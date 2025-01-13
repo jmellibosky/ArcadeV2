@@ -1,0 +1,79 @@
+$backgroundColorDark: #111;
+$backgroundColorMid: #444;
+$backgroundColorLight: #fc0;
+
+$fontColor: #eee;
+
+@mixin center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin font-future {
+  font-family: "Orbitron", serif;
+}
+
+* {
+  box-sizing: border-box;
+  @include font-future;
+}
+
+.container-fluid {
+  padding-top: calc(var(--bs-gutter-x)* .5);
+}
+
+// index.js
+#root {
+  @include font-future;
+  margin: 0;
+  height: 100vh;
+  background-color: $backgroundColorDark;
+  color: $fontColor;
+}
+
+// AppUser.jsx
+#user-info {
+  background-color: $backgroundColorLight;
+  color: $backgroundColorDark;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+// Home.jsx
+h3 {
+  background-color: $backgroundColorLight;
+  color: $backgroundColorDark !important;
+  padding: 0.25em 1em;
+  margin: 0 !important;
+  border-top: 1px solid $backgroundColorMid;
+  border-bottom: 1px solid $backgroundColorMid
+}
+
+#section {
+  background-color: $backgroundColorMid;
+  padding: 0.5em;
+}
+
+.scroll-list {
+  display: flex;
+  background-color: $fontColor;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5em;
+  gap: 0.5em;
+}
+
+.list-icon {
+  height: 6em;
+  width: 6em;
+  border: 1px solid $backgroundColorMid;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px $backgroundColorDark;
+}

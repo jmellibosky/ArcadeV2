@@ -1,9 +1,9 @@
 $backgroundColorDark: #111;
 $backgroundColorMid: #444;
 $backgroundColorLight: #fc0;
+$backgroundLight: url("https://www.transparenttextures.com/patterns/gplay.png"), linear-gradient(135deg, $backgroundColorLight, darken($backgroundColorLight, 15%));
 
 $fontColor: #eee;
-$fontActiveColor: #fff;
 
 @mixin center {
   display: flex;
@@ -32,18 +32,48 @@ input {
   outline: 0;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px) brightness(50%);
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.background img.active {
+  opacity: 1;
+}
+
 // index.js
 #root {
   @include font-future;
   margin: 0;
   height: 100vh;
-  background-color: $backgroundColorDark;
   color: $fontColor;
 }
 
 // AppUser.jsx
 #user-info {
-  background-color: $backgroundColorLight;
+  background: $backgroundLight;
   color: $backgroundColorDark;
   width: 100%;
   display: flex;
@@ -57,14 +87,29 @@ input {
 
 // Home.jsx
 h3 {
-  background-color: $backgroundColorLight;
+  background: $backgroundLight;
   color: $backgroundColorDark !important;
-  padding: 0.25em 1em;
+  padding-left: 1em;
+  height: 1.75em;
   margin: 0 !important;
   box-shadow: 0 0 5px 1px $backgroundColorDark;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &>.btn-icon {
+    padding: 0 1em;
+    height: 1.75em;
+    border-left: 1px solid $backgroundColorDark !important;
+
+    &:hover {
+      background-color: lighten($backgroundColorLight, 10%);
+    }
+
+    &:active {
+      background-color: lighten($backgroundColorLight, 20%);
+    }
+  }
 }
 
 .section {
@@ -98,11 +143,11 @@ h3 {
   box-shadow: 0 0 5px 1px $backgroundColorDark;
 
   &:hover {
-    background-color: $fontActiveColor;
+    background-color: lighten($fontColor, 10%);
   }
 
   &:active {
-    background-color: $fontActiveColor;
+    background-color: lighten($fontColor, 20%);
   }
 }
 
@@ -131,6 +176,18 @@ h3 {
   padding: 0.15em 0.5em;
   text-decoration: underline;
   cursor: pointer;
+
+  &:hover {
+    background-color: lighten($backgroundColorMid, 10%);
+  }
+
+  &:active {
+    background-color: lighten($backgroundColorMid, 20%);
+  }
+
+  &.text-danger {
+    color: #f00 !important;
+  }
 }
 
 // History.jsx
@@ -173,8 +230,10 @@ h3 {
   color: $backgroundColorDark;
 
   &.table-header {
-    background-color: $backgroundColorLight;
+    background: $backgroundLight;
+    box-shadow: 0 0 5px 1px $backgroundColorDark;
     font-weight: bold;
+    margin-bottom: 1em;
   }
 
   &.table-row-even {
@@ -182,6 +241,6 @@ h3 {
   }
   
   &.table-row-odd {
-    background-color: $fontActiveColor;
+    background-color: lighten($fontColor, 20%);
   }
 }

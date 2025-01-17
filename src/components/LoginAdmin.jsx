@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 import { FaUser } from 'react-icons/fa6';
 
-
 export default function LoginAdmin() {
     const navigate = useNavigate();
     
@@ -15,7 +14,7 @@ export default function LoginAdmin() {
         <div className="container-fluid">   
             <h3>
                 <span>Iniciar sesión admin</span>
-                <div className="d-flex align-items-center" onClick={() => navigate('/login')}>
+                <div className="d-flex align-items-center btn-icon" onClick={() => navigate('/login')}>
                     <FaUser />
                 </div>
             </h3>

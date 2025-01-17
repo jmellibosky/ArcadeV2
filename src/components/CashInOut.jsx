@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useHistory } from '../hooks/useHistory';
 import { useState } from "react";
 
+import { FaListUl } from "react-icons/fa6";
+
 export default function CashInOut() {
     const navigate = useNavigate();
     const { history } = useHistory();
@@ -17,9 +19,14 @@ export default function CashInOut() {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col">
+                <div className="col-lg-6 col-md-12">
                     <div className="section-admin text-center">
-                        <h3>Habitación N°{user.room}</h3>
+                        <h3>
+                            <span>Habitación N°{user.room}</span>
+                            <div className="d-flex align-items-center btn-icon" onClick={() => navigate('/users')} title="Volver al listado">
+                                <FaListUl />
+                            </div>
+                        </h3>
                         <div className="pt-2">
                             Saldo actual:
                             <h4>$ {user.cash}</h4>
@@ -55,10 +62,10 @@ export default function CashInOut() {
                         )}
                     </div>
                 </div>
-                <div className="col">
+                <div className="col-lg-6 col-md-12">
                     <div className="section-admin">
                         <h3>Movimientos</h3>
-                        <div className="history">
+                        <div className="history mt-3">
                         {
                             history.map((o, i) => {
                                 return (
